@@ -8,33 +8,32 @@
 class MqttClient {
 
     private:
-        char *ssid, *password, *broker, *subscription;
-        
-        // connect to a wifi network with given ssid, password
-        void setup_wifi();
 
+        // broker-url: eg, "broker.mqtt-dashboard.com", "iot.eclipse.org", etc
+        const char *broker = "broker.mqtt-dashboard.com";
+        const char *inTopic = "roboticMind/fromAndroid/";
+        const char *outTopic = "roboticMind/fromESP8266/";
+        
         // reconnecting logic when connection to server is lost
         void reconnect();
 
 
     public:
-        /*
+        
+         /* connect to a wifi network with given ssid, password
             ssid: name of the wifi network to connect to
             password: <for above ssid>
-            broker-url: eg, "broker.mqtt-dashboard.com", "iot.eclipse.org", etc
         */
-        MqttClient(char* ssid, char* password, char* broker);
-        
-        // topics to subscribe to (incoming)
-        void subscribe(char *topics);
+        void setup_wifi(char *ssid, char *password);
 
-        /*
-            topic: name of the topic to publish to
-            payload: message to be published
-            length: message length
-        */
-        void callback(char *topic, byte *payLoad, unsigned int length);
+        // Get destn. lat & long. if available
+        double *getDestinationCoordinates();
 
+        boolean locationAvailable();
+
+        void disconnect();
+
+        void loop();
 };
 
 #endif

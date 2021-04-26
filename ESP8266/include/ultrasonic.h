@@ -18,8 +18,8 @@ class Ultrasonic {
     public:
     /*
         Pins have to be in the following format:
-            Sensor1: echo,trigger
-            Sensor2: echo, trigger
+            Sensor1: echo1,trigger1
+            Sensor2: echo2, trigger2
              & so on..
         Thus array must be: echo1, trigger1, echo2, trigger2,.....
     */
